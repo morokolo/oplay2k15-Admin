@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import 'normalize.css/normalize.css'
+import './styles/styles.scss';
 import reportWebVitals from './reportWebVitals';
+import OplayApp from './components/OplayApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <OplayApp />
   </React.StrictMode>,
   document.getElementById('root')
 );

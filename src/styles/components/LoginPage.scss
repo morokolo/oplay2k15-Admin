@@ -1,0 +1,26 @@
+.login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 $m-size;
+}
+
+.login__title {
+  text-align: center;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login form > * {
+  margin: $s-size;
+}
+
+.login .MuiButton-containedSizeLarge {
+  font-size: 1.6rem;
+}
