@@ -5,7 +5,7 @@ import Tab from '@material-ui/core/Tab';
 
 function Settings() {
 
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -21,9 +21,9 @@ function Settings() {
           textColor="primary"
           onChange={handleChange}
         >
-          <Tab label="Tab 1" />
-          <Tab label="Tab 2" />
-          <Tab label="Tab 3" />
+          <Tab label="League" />
+          <Tab label="Clubs" />
+          <Tab label="Rules" />
         </Tabs>
       </Paper>
     </div>

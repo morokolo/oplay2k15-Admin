@@ -3,7 +3,7 @@ import Settings from './Settings';
 
 function BodyContent() {
   return (
-    <div>
+    <div className="bodyContent">
       <Settings />
     </div>
   )

@@ -5,13 +5,16 @@ import {
 
 function LeftNav() {
   return (
-    <div>
+    <div className="leftNav">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Live Game</Link>
         </li>
         <li>
-          <Link to="/topics">Topics</Link>
+          <Link to="/games">Upcoming Games</Link>
+        </li>
+        <li>
+          <Link to="/settings">Settings</Link>
         </li>
       </ul>
     </div>
