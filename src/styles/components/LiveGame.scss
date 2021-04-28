@@ -1,0 +1,13 @@
+.liveGame__match {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  margin: $s-size;
+  padding: 0 $s-size 0 $s-size;
+}
+
+.liveGame__match img {
+  width: 40px;
+}

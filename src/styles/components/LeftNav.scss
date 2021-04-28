@@ -1,3 +1,9 @@
 .leftNav {
   width: 20%;
+  height: calc(100vh - 75px);
+  background: $ligt-grey;
+}
+
+.leftNav .MuiMenuItem-root {
+  height: 50px;
 }

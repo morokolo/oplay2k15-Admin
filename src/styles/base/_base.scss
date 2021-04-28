@@ -1,11 +1,7 @@
-html {
-  font-size: 62.5%;
-}
-
 body {
   background: $white;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: $m-size;
+  font-size: $s-size;
 }
 
 button {
@@ -14,4 +10,8 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+li {
+  cursor: pointer;
 }
