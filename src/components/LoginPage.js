@@ -39,8 +39,8 @@ function LoginPage({ history }) {
   }
 
   const getUser = () => {
-    if (isUserLoggedIn) {
-      setUser(isUserLoggedIn);
+    if (isUserLoggedIn()) {
+      setUser(isUserLoggedIn());
       history.push('/dashboard');
     }
   }

@@ -1,7 +1,19 @@
-.liveGames__title {
+.liveGames__title, .liveGame__select {
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 $s-size 0 $s-size;
 }
+
+.liveGame--select {
+  padding: $s-size; 
+}
+
+.liveGame__select .MuiFormControl-root {
+  width: 50%;
+}
+.liveGames__title small {
+  color: darken($color: $ligt-grey, $amount: 10);
+}
+

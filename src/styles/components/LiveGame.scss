@@ -3,11 +3,40 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid lightgrey;
+  border: 1px solid darken($color: $ligt-grey, $amount: 5);
   margin: $s-size;
   padding: 0 $s-size 0 $s-size;
 }
 
-.liveGame__match img {
-  width: 40px;
+.liveGame__match:first-child {
+  margin-top: 0;
 }
+
+.liveGame__match:hover {
+  cursor: pointer;
+}
+
+.liveGame__match img {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+}
+
+.liveGame__home, .liveGame__away {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.liveGame__score {
+  display: flex;
+  flex-grow: 0.5;
+}
+
+.liveGame__home p, .liveGame__away p, .liveGame__time p {
+  padding-left: $s-size;
+}
+
+.liveGame__time {
+  border-left: 1px solid darken($color: $ligt-grey, $amount: 5);
+}
+

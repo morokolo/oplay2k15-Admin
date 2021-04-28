@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
@@ -13,7 +12,7 @@ import { isUserLoggedIn } from '../services/shared-service';
 function OplayRouters() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(() => {
-    if (isUserLoggedIn) {
+    if (isUserLoggedIn()) {
       setIsLoggedIn(true);
     }
   }, [])
