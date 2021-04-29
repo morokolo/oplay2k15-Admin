@@ -7,26 +7,25 @@ import {
 import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
 import OplayContainer from '../components/OplayContainer';
-import { isUserLoggedIn } from '../services/shared-service';
+import { ProvideAuth } from '../hooks/auth-hook';
+import PrivateRoute from './PrivateRoute';
 
 function OplayRouters() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  useEffect(() => {
-    if (isUserLoggedIn()) {
-      setIsLoggedIn(true);
-    }
-  }, [])
 
   return (
-    <Router>
-      <div>
-        <Header isLoggedIn={isLoggedIn} />
-        <Switch>
-          <Route path="/" component={LoginPage} exact={true} />
-          <Route path="/dashboard" component={OplayContainer} />
-        </Switch>
-      </div>
-    </Router>
+    <ProvideAuth>
+      <Router>
+        <div>
+          <Header />
+          <Switch>
+            <Route path="/" component={LoginPage} exact={true} />
+            <PrivateRoute path="/dashboard">
+              <OplayContainer />
+            </PrivateRoute>
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
   )
 }
 
