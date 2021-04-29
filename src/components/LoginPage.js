@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { isUserLoggedIn } from '../services/shared-service';
 import { useAuth } from '../hooks/auth-hook';
 
 function LoginPage({ history }) {
@@ -11,7 +10,7 @@ function LoginPage({ history }) {
 
   useEffect(() => {
     getUser()
-  }, [])
+  })
 
   const onLoginSubmitHandle = (e) => {
     e.preventDefault();

@@ -1,48 +1,62 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext } from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import sideBarContext from '../context/sideBar-context';
 
 
 function LiveGameSideBar() {
   const anchor = 'right';
-  const [state, setState] = React.useState({ right: false });
+  const { openSideBar, dispatch } = useContext(sideBarContext);
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  const toggleDrawer = (anchor, _openSideBar) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    dispatch({ type: 'TOGGLE_SIDEBAR', toggle: _openSideBar })
   };
 
-  const list = (anchor) => (
+  const sidebarInformation = (anchor) => (
     <div
+      className="sidebar"
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <p>Coming sooon...</p>
+      <div className="liveGameSidebar">
+        <div className="liveGameSidebar__title">
+          <p>Dstv Premier League</p>
+        </div>
+        <div className="liveGameSidebar__teams">
+          <div className="liveGameSidebar__teamsBlock">
+            <img src="/assets/chiefs.png" alt="home team" />
+            <br />
+            <small>KFC</small>
+            <p>Kaizer Chiefs</p>
+          </div>
+
+          <div className="liveGameSidebar__teamsBlock">
+            <p>30 April 2021</p>
+            <p>Score: 1 - 0</p>
+          </div>
+
+          <div className="liveGameSidebar__teamsBlock">
+            <img src="/assets/pirates.png" alt="awy team" />
+            <br />
+            <small>OPFC</small>
+            <p>Orlando Pirates</p>
+          </div>
+        </div>
+        <div className="liveGameSidebar__scoreUpdate">
+
+        </div>
+      </div>
     </div>
   );
 
   return (
-    <div>
-      <React.Fragment key={anchor}>
-        <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-        <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-          {list(anchor)}
-        </Drawer>
-      </React.Fragment>
-    </div>
+    <Drawer anchor={anchor} open={openSideBar} onClose={toggleDrawer(anchor, false)}>
+      {sidebarInformation(anchor)}
+    </Drawer>
   );
 }
 
