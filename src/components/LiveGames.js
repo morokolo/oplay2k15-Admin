@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
+import { connect } from "react-redux";
 import LiveGame from './LiveGame';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Alert from '@material-ui/lab/Alert';
+import LeagueSelect from './LeagueSelect';
+import { getSelectedLeague } from '../redux/selector';
 
-function LiveGames() {
+function LiveGames({ selectedLeague }) {
   const initialState = [{
     homeTeamName: 'Pirates',
     homeTeamLogo: '/assets/pirates.png',
@@ -21,42 +21,30 @@ function LiveGames() {
     score: '1 - 3'
   }
   ]
+
   const [games] = useState(initialState);
-  const [league, setLeague] = useState('');
-
-  const handleLeagueChange = (event) => {
-    setLeague(event.target.value);
-  };
-
 
   return (
     <div className="liveGames">
-      <div className="liveGame__select liveGame--select">
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">League</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={league}
-            onChange={handleLeagueChange}
-            label="League"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Dstv PremeirShip</MenuItem>
-            <MenuItem value={20}>Nedbank</MenuItem>
-            <MenuItem value={30}>Absa Top 8</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <div className="liveGames__title">
-        <p>DSTV Premeir League <small>All Games</small></p>
-      </div>
-      <LiveGame games={games} />
-
+      <LeagueSelect />
+      {
+        selectedLeague ? <div>
+          <div className="liveGames__title">
+            <p>{selectedLeague.id} <small>All Games</small></p>
+          </div>
+          <LiveGame games={games} />
+        </div> :
+          <Alert variant="outlined" severity="info">
+            Please select a league above to continue
+        </Alert>
+      }
     </div>
   )
 }
 
-export default LiveGames
+const mapStateToProps = state => {
+  return { selectedLeague: getSelectedLeague(state) };
+};
+
+export default connect(mapStateToProps)(LiveGames);
+

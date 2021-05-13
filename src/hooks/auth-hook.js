@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { signIn, signOut } from '../services/authentication-service';
 import { auth } from '../firebase/firebase';
-import {
-  useHistory
-} from "react-router-dom";
 
 const authContext = createContext();
 
@@ -17,7 +14,6 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-  let history = useHistory();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
@@ -31,8 +27,6 @@ function useProvideAuth() {
     return signIn(email, password).then((userCredential) => {
       const { uid, refreshToken, email, displayName } = userCredential.user
       setUser({ uid, refreshToken, email, displayName });
-      localStorage.setItem('oplay_user', JSON.stringify(user));
-      history.push('/dashboard');
     }).catch((error) => {
       const errorMessage = error.message;
       setError(errorMessage);
@@ -52,10 +46,8 @@ function useProvideAuth() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        localStorage.setItem('oplay_user', JSON.stringify(user));
       } else {
         setUser(false);
-        localStorage.removeItem('oplay_user')
       }
     });
 

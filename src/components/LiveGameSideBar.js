@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import sideBarContext from '../context/sideBar-context';
+import AddBoxSharpIcon from '@material-ui/icons/AddBoxSharp';
+import IndeterminateCheckBoxSharpIcon from '@material-ui/icons/IndeterminateCheckBoxSharp';
+import Button from '@material-ui/core/Button';
 
 
 function LiveGameSideBar() {
@@ -34,7 +37,7 @@ function LiveGameSideBar() {
             <p>Kaizer Chiefs</p>
           </div>
 
-          <div className="liveGameSidebar__teamsBlock">
+          <div className="liveGameSidebar__teamsBlock liveGameSidebar__teamsBlock--middle">
             <p>30 April 2021</p>
             <p>Score: 1 - 0</p>
           </div>
@@ -47,7 +50,22 @@ function LiveGameSideBar() {
           </div>
         </div>
         <div className="liveGameSidebar__scoreUpdate">
-
+          <div className="liveGameSidebar__scoreUpdate__home">
+            <IndeterminateCheckBoxSharpIcon />
+            <AddBoxSharpIcon />
+          </div>
+          <div className="liveGameSidebar__scoreUpdate__away">
+            <IndeterminateCheckBoxSharpIcon />
+            <AddBoxSharpIcon />
+          </div>
+        </div>
+        <div className="liveGameSidebar__actions">
+          <Button variant="outlined" color="primary">
+            Cancel
+        </Button>
+          <Button variant="outlined" color="secondary">
+            Save
+        </Button>
         </div>
       </div>
     </div>

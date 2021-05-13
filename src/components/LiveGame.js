@@ -1,10 +1,11 @@
 import React, { useReducer } from 'react';
 import LiveGameSideBar from './LiveGameSideBar';
-import sidebarReducer from '../reducers/sidebar-reducer';
+import sidebarReducer from '../redux/reducers/sidebar-reducer';
 import SideBarContext from '../context/sideBar-context';
 
 function LiveGame({ games }) {
   const [openSideBar, dispatch] = useReducer(sidebarReducer, false);
+
 
   const handleOpenDrawer = (e) => {
     e.preventDefault();

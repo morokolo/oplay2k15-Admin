@@ -4,10 +4,14 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 import reportWebVitals from './reportWebVitals';
 import OplayApp from './components/OplayApp';
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <OplayApp />
+    <Provider store={store}>
+      <OplayApp />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
