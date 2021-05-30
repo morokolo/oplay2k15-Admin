@@ -1,0 +1,41 @@
+.upcomingGames__selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: $s-size;
+  padding-bottom: $s-size;
+}
+
+.SingleDatePicker.SingleDatePicker_1 {
+  display: flex;
+  flex: 0.5;
+}
+
+.upcomingGames__show {
+  display: flex;
+  justify-content: space-around;
+}
+
+.upcomingGames__show__team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upcomingGames__show__team img {
+  height: 90px;
+  object-fit: contain;
+  width: 90px;
+}
+
+.upcomingGames__show__time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upcomingGames__selection_datetime {
+  padding-right: 10px;
+    padding-left: 10px;
+}

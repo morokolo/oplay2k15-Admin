@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid darken($color: $ligt-grey, $amount: 5);
-  margin: $s-size;
+  margin: $s-size 0 $s-size 0;
   padding: 0 $s-size 0 $s-size;
 }
 
