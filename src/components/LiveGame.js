@@ -16,24 +16,24 @@ function LiveGame({ games }) {
     <SideBarContext.Provider value={{ openSideBar, dispatch }}>
       <div className="liveGame">
         {games.map((game, index) =>
-          <div className="liveGame__match" key={index} onClick={handleOpenDrawer}>
+          <div className="liveGame__match" key={game.id} onClick={handleOpenDrawer}>
             <div className="liveGame__home">
               <div className="liveGame__teamLogo">
-                <img src={game.homeTeamLogo} alt="home team" />
+                <img src={game.games.homeTeamLogo} alt="home team" />
               </div>
-              <p>{game.homeTeamName}</p>
+              <p>{game.games.homeTeamName}</p>
             </div>
             <div className="liveGame__score">
-              <p>{game.score}</p>
+              <p>v/s</p>
             </div>
             <div className="liveGame__away">
               <div className="liveGame__teamLogo">
-                <img src={game.awayTeamLogo} alt="away team" />
+                <img src={game.games.awayTeamLogo} alt="away team" />
               </div>
-              <p>{game.awayTeamName}</p>
+              <p>{game.games.awayTeamName}</p>
             </div>
             <div className="liveGame__time">
-              <p>+{20 * (index + 1)}</p>
+              <p>+{20}</p>
             </div>
           </div>
         )}

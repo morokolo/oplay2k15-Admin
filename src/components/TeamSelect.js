@@ -18,16 +18,16 @@ function TeamSelect({ side, selectedLeague, dispatch }) {
       const foundTeam = getSelectedTeam(event.target.value)
       team = {
         homeTeam: {
-          homeTeamLogo: foundTeam.team.imageUrl,
-          homeTeamName: foundTeam.team.name
+          homeTeamLogo: foundTeam ? foundTeam.team.imageUrl : null,
+          homeTeamName: foundTeam ? foundTeam.team.name : null
         }
       }
     } else if (side.toLowerCase() === 'away') {
       const foundTeam = getSelectedTeam(event.target.value)
       team = {
         awayTeam: {
-          awayTeamLogo: foundTeam.team.imageUrl,
-          awayTeamName: foundTeam.team.name
+          awayTeamLogo: foundTeam ? foundTeam.team.imageUrl : null,
+          awayTeamName: foundTeam ? foundTeam.team.name : null
         }
       }
     }

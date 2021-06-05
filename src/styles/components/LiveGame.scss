@@ -2,7 +2,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border: 1px solid darken($color: $ligt-grey, $amount: 5);
   margin: $s-size 0 $s-size 0;
   padding: 0 $s-size 0 $s-size;

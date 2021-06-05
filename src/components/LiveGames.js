@@ -1,28 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import LiveGame from './LiveGame';
 import Alert from '@material-ui/lab/Alert';
 import LeagueSelect from './LeagueSelect';
 import { getSelectedLeague } from '../redux/selector';
+import { useGames } from '../hooks/games-hook';
 
 function LiveGames({ selectedLeague }) {
-  const initialState = [{
-    homeTeamName: 'Pirates',
-    homeTeamLogo: '/assets/pirates.png',
-    awayTeamName: 'Chiefs',
-    awayTeamLogo: '/assets/chiefs.png',
-    score: '0 - 2'
-  },
-  {
-    homeTeamName: 'Khosi',
-    homeTeamLogo: '/assets/chiefs.png',
-    awayTeamName: 'Baka',
-    awayTeamLogo: '/assets/pirates.png',
-    score: '1 - 3'
-  }
-  ]
+  const matches = useGames({ leagueId: selectedLeague.id })
 
-  const [games] = useState(initialState);
 
   return (
     <div className="liveGames">
@@ -32,7 +18,7 @@ function LiveGames({ selectedLeague }) {
           <div className="liveGames__title">
             <p>{selectedLeague.id} <small>All Games</small></p>
           </div>
-          <LiveGame games={games} />
+          <LiveGame games={matches} />
         </div> :
           <Alert variant="outlined" severity="info">
             Please select a league above to continue
