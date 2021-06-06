@@ -103,7 +103,13 @@ function UpcomingGames({ upComingGame, leagueId }) {
       </div>
 
       <div>
-        <Button variant="outlined" size="medium" color="secondary" onClick={handleSaveGame}> Save a match </Button>
+        <Button
+          variant="outlined"
+          size="medium"
+          color="secondary"
+          onClick={handleSaveGame}>
+          Save a match
+        </Button>
       </div>
     </div>
   )

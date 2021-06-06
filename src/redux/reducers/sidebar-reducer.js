@@ -1,7 +1,15 @@
 const sideBarReducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_SIDEBAR':
-      return action.toggle
+      return {
+        ...state,
+        toggle: action.toggle
+      }
+    case 'SIDEBAR_MATCH':
+      return {
+        ...state,
+        game: action.game
+      }
     default:
       return state
   }
