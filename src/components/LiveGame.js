@@ -6,7 +6,6 @@ import SideBarContext from '../context/sideBar-context';
 function LiveGame({ games }) {
   const [gameSideBar, dispatch] = useReducer(sidebarReducer, null);
 
-
   const handleOpenDrawer = (e, game) => {
     e.preventDefault();
     dispatch({ type: 'SIDEBAR_MATCH', game })
