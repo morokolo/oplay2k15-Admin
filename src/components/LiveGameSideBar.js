@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import sideBarContext from '../context/sideBar-context';
 import AddBoxSharpIcon from '@material-ui/icons/AddBoxSharp';

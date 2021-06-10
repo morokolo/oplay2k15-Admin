@@ -12,7 +12,6 @@ function LeagueSelect({ selectedLeague, dispatch }) {
   const availableLeagues = useAvailableLeagues();
 
   const handleLeagueChange = (event) => {
-    console.log(availableLeagues)
     const foundLeague = availableLeagues.find(league => league.id === event.target.value)
     dispatch(changeSeletedLeague(foundLeague))
   };
