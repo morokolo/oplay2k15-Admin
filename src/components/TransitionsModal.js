@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ children, buttonName }) {
+const TransitionsModal = React.forwardRef(({ children, buttonName }, ref) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -32,7 +32,7 @@ export default function TransitionsModal({ children, buttonName }) {
   };
 
   return (
-    <div>
+    <div ref={ref}>
       <Button color="primary" onClick={handleOpen}>{buttonName}</Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -48,12 +48,12 @@ export default function TransitionsModal({ children, buttonName }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
             {children}
           </div>
         </Fade>
       </Modal>
     </div>
   );
-}
+});
+
+export default TransitionsModal;

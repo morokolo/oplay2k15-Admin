@@ -48,10 +48,10 @@ function OTable({ children, rows, header }) {
                 <StyledTableRow key={index}>
                   {header.map((rowHeader, hIndex) => {
                     return hIndex === 0 ?
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell component="th" scope="row" key={`${index}_${hIndex}`}>
                         {row[header[hIndex].key]}
                       </StyledTableCell> :
-                      <StyledTableCell>{row[header[hIndex].key]}</StyledTableCell>
+                      <StyledTableCell key={`${index}_${hIndex}`}>{row[header[hIndex].key]}</StyledTableCell>
                   })}
                   {
                     children &&

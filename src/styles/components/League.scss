@@ -1,0 +1,14 @@
+.league__form {
+  display: flex;
+  flex-direction: column;
+  width: 345px;
+}
+
+.league__form .MuiFormControl-root  {
+  margin-bottom: $s-size;
+}
+
+.league__form img {
+  height: 190px;
+  object-fit: contain;
+}
