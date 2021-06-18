@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import League from './League';
+import Clubs from './Clubs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,7 +69,7 @@ function Settings() {
         <League />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Clubs />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three

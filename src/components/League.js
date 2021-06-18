@@ -5,9 +5,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { useAvailableLeagues } from '../hooks/leagues-hook';
 import TransitionsModal from './TransitionsModal';
 import OTable from './OTable';
+import firebase from 'firebase';
+import { db, storage } from '../firebase/firebase';
+import { listOfRegions } from '../constants/consts'
 
 function League() {
   const availableLeagues = useAvailableLeagues();
@@ -16,6 +20,7 @@ function League() {
   const [leagueImage, setLeagueImage] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const [leagueRegion, setLeagueRegion] = useState('');
+  const [leagueStatus, setLeagueStatus] = useState('Inactive');
 
   const headerData = [
     { title: 'Name', key: 'name' },
@@ -34,7 +39,33 @@ function League() {
 
   const onTeamCreateSubmitHandle = (e) => {
     e.preventDefault()
-
+    const uploadTask = storage.ref(`images/${leagueImage.name}`).put(leagueImage);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log('proooo', progress)
+      },
+      (error) => {
+        alert(error.message);
+      }, () => {
+        storage
+          .ref('images')
+          .child(leagueImage.name)
+          .getDownloadURL()
+          .then(url => {
+            db.collection('leagues').add({
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              name: leagueName,
+              logoUrl: url,
+              region: leagueRegion,
+              status: leagueStatus,
+            });
+          })
+      }
+    )
   }
 
   const handleImageChange = (e) => {
@@ -73,13 +104,25 @@ function League() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem key="l_1" value="South Africa">South Africa</MenuItem>
-              <MenuItem key="l_2" value="England">England</MenuItem>
-              <MenuItem key="l_3" value="Spain">Spain</MenuItem>
-              <MenuItem key="l_4" value="Germany">Germany</MenuItem>
-              <MenuItem key="l_5" value="USA">USA</MenuItem>
-              <MenuItem key="l_6" value="Turkey">Turkey</MenuItem>
-              <MenuItem key="l_7" value="World">World</MenuItem>
+              {listOfRegions.map(({ value, label }, index) => (
+                <MenuItem key={`${index}_${value}`} value={value}>{label}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">Status</InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={leagueStatus}
+              onChange={(e) => setLeagueStatus(e.target.value)}
+              label="Status"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem key="lS_1" value="Active">Active</MenuItem>
+              <MenuItem key="lS_2" value="Inactive">Inactive</MenuItem>
             </Select>
           </FormControl>
           <TextField
@@ -92,7 +135,9 @@ function League() {
             variant="outlined"
           />
           {leagueImage && <img src={URL.createObjectURL(leagueImage)} alt="img" />}
-          <p><label htmlFor="file">Upload Team Image</label></p>
+          <label htmlFor="file" className="league__form__upload_image">
+            <CloudUploadIcon color="secondary" style={{ fontSize: 50 }} />
+          </label>
           <Button
             variant="contained"
             color="primary"

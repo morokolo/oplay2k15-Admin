@@ -56,6 +56,7 @@ function TeamSelect({ side, selectedLeague, dispatch }) {
             <em>None</em>
           </MenuItem>
           {
+            leagueTeams.length > 0 &&
             leagueTeams.map(leagueTeam => (
               <MenuItem key={leagueTeam.id} value={leagueTeam.id}>{leagueTeam.team.name}</MenuItem>
             ))

@@ -1,0 +1,18 @@
+.club__upload_image {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.club__modalContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.club__modalContainer img {
+  height: 190px;
+  object-fit: contain;
+  margin-top: $s-size;
+}
