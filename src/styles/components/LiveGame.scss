@@ -30,11 +30,28 @@
 .liveGame__score {
   display: flex;
   flex-grow: 0.5;
+  justify-content: center;
 }
 
-.liveGame__home p, .liveGame__away p, .liveGame__time p {
+.liveGame__time {
+  margin: 0;
+  text-align: center;
+}
+
+.liveGame__away {
+  justify-content: flex-end;
+}
+
+.liveGame__home {
+  justify-content: flex-start;
+}
+
+.liveGame__home p, .liveGame__time p {
   padding-left: $s-size;
 }
+.liveGame__away p {
+  padding-right: $s-size;
+} 
 
 .liveGame__time {
   border-left: 1px solid darken($color: $ligt-grey, $amount: 5);

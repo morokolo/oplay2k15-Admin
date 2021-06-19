@@ -6,9 +6,8 @@ import LeagueSelect from './LeagueSelect';
 import { getSelectedLeague } from '../redux/selector';
 import { useGames } from '../hooks/games-hook';
 
-function LiveGames({ selectedLeague }) {
+const LiveGames = ({ selectedLeague }) => {
   const matches = useGames({ leagueId: selectedLeague.id })
-
 
   return (
     <div className="liveGames">
@@ -16,13 +15,23 @@ function LiveGames({ selectedLeague }) {
       {
         selectedLeague ? <div>
           <div className="liveGames__title">
-            <p>{selectedLeague.id} <small>All Games</small></p>
+            <p>{selectedLeague.league.name} <small>All Games</small></p>
           </div>
           <LiveGame games={matches} leagueId={selectedLeague.id} />
         </div> :
-          <Alert variant="outlined" severity="info">
-            Please select a league above to continue
-        </Alert>
+          <>
+            <br />
+            <Alert variant="outlined" severity="info">
+              Please select a league above to continue
+            </Alert>
+          </>
+      }
+
+      {
+        (selectedLeague && matches.length === 0) &&
+        <Alert variant="outlined" severity="warning">
+          No games available for your selection
+          </Alert>
       }
     </div>
   )

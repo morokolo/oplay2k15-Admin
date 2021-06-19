@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { connect } from "react-redux";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,7 +8,7 @@ import { useAvailableLeagues } from '../hooks/leagues-hook';
 import { getSelectedLeague } from '../redux/selector';
 import { changeSeletedLeague } from '../redux/actions';
 
-function LeagueSelect({ selectedLeague, dispatch }) {
+const LeagueSelect = forwardRef(({ selectedLeague, dispatch }, ref) => {
   const availableLeagues = useAvailableLeagues();
 
   const handleLeagueChange = (event) => {
@@ -17,7 +17,7 @@ function LeagueSelect({ selectedLeague, dispatch }) {
   };
 
   return (
-    <div className="league-select">
+    <div className="league-select" ref={ref}>
       <FormControl variant="outlined">
         <InputLabel id="demo-simple-select-outlined-label">League</InputLabel>
         <Select
@@ -39,7 +39,7 @@ function LeagueSelect({ selectedLeague, dispatch }) {
       </FormControl>
     </div>
   )
-}
+})
 
 const mapStateToProps = state => {
   return { selectedLeague: getSelectedLeague(state) };

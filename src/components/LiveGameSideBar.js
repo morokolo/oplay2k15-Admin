@@ -11,11 +11,11 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import { db } from '../firebase/firebase';
-import { getSelectedLeagueId } from '../redux/selector';
+import { getSelectedLeague } from '../redux/selector';
 import { connect } from "react-redux";
 
 
-function LiveGameSideBar({ leagueId }) {
+function LiveGameSideBar({ selectedLeague }) {
   const anchor = 'right';
   const { gameSideBar, dispatch } = useContext(sideBarContext);
   const [homeScore, setHomeScore] = useState(0)
@@ -78,7 +78,7 @@ function LiveGameSideBar({ leagueId }) {
     }
 
     db.collection('leagues')
-      .doc(leagueId)
+      .doc(selectedLeague.id)
       .collection('matches')
       .doc(gameSideBar.game.id).set({
         ...payload
@@ -99,7 +99,7 @@ function LiveGameSideBar({ leagueId }) {
       </span>
       <div className="liveGameSidebar">
         <div className="liveGameSidebar__title">
-          <h3>Dstv Premier League</h3>
+          <h3>{selectedLeague.league.name}</h3>
         </div>
         <div className="liveGameSidebar__teams">
           <div className="liveGameSidebar__teamsBlock">
@@ -161,7 +161,7 @@ function LiveGameSideBar({ leagueId }) {
 }
 
 const mapStateToProps = state => {
-  return { leagueId: getSelectedLeagueId(state) };
+  return { selectedLeague: getSelectedLeague(state) };
 };
 
 export default connect(mapStateToProps)(LiveGameSideBar);
