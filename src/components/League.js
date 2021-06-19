@@ -46,7 +46,6 @@ function League() {
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        console.log('proooo', progress)
       },
       (error) => {
         alert(error.message);

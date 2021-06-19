@@ -18,7 +18,7 @@ function LiveGames({ selectedLeague }) {
           <div className="liveGames__title">
             <p>{selectedLeague.id} <small>All Games</small></p>
           </div>
-          <LiveGame games={matches} />
+          <LiveGame games={matches} leagueId={selectedLeague.id} />
         </div> :
           <Alert variant="outlined" severity="info">
             Please select a league above to continue

@@ -21,10 +21,12 @@ function UpcomingGames({ upComingGame, leagueId }) {
 
   const handleSaveGame = () => {
     const payload = {
-      ...upComingGame.awayTeam,
       ...upComingGame.homeTeam,
+      ...upComingGame.awayTeam,
       ...upComingGame.dateTime,
-      minPrice: minAmount
+      minPrice: minAmount,
+      homeScore: 0,
+      awayScore: 0
     }
 
     const hasEmptyKey = Object.keys(payload).some(x => payload[x] === null || payload[x] === '');

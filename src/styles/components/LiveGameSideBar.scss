@@ -1,7 +1,7 @@
 .liveGameSidebar {
   display: flex;
   flex-direction: column;
-  padding: $m-size;
+  padding: 0 $m-size 0 $m-size;
 }
 
 .liveGameSidebar__title {
@@ -21,11 +21,15 @@
   border: 1px solid $ligt-grey;
   box-shadow: 1px 0px 1px 0px $blue;
   padding: 5px;
+  min-width: 130px;
 }
 
 .liveGameSidebar__teamsBlock--middle {
   border: none;
   box-shadow: unset;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
 }
 
 .liveGameSidebar__teamsBlock--middle p {
@@ -48,11 +52,8 @@
 }
 
 .liveGameSidebar__scoreUpdate .MuiSvgIcon-root {
-  font-size: 2.2rem;
-}
-
-.liveGameSidebar__scoreUpdate .MuiSvgIcon-root {
-  fill: #3f51b5;
+  fill: darken($color: #3f51b5, $amount: 15);
+  cursor: pointer;
 }
 
 .liveGameSidebar__scoreUpdate__home * {
@@ -66,4 +67,12 @@
 .liveGameSidebar__actions {
   display: flex;
   margin: $s-size;
+}
+.liveGameSidebar__actions button {
+  margin-right: $s-size; 
+}
+
+.closeSidebar .MuiSvgIcon-root{
+  fill: darken($color: #3f51b5, $amount: 25);
+  cursor: pointer;
 }

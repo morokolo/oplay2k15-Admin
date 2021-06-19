@@ -15,7 +15,6 @@ export function useGames({ leagueId }) {
           games: doc.data()
         })))
       })
-
     return () => unsubscribe();
   }, [leagueId])
 

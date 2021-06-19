@@ -3,7 +3,7 @@ import LiveGameSideBar from './LiveGameSideBar';
 import sidebarReducer from '../redux/reducers/sidebar-reducer';
 import SideBarContext from '../context/sideBar-context';
 
-function LiveGame({ games }) {
+function LiveGame({ games, leagueId }) {
   const [gameSideBar, dispatch] = useReducer(sidebarReducer, null);
 
   const handleOpenDrawer = (e, game) => {
