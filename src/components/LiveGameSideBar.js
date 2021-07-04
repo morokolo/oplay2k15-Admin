@@ -74,7 +74,8 @@ function LiveGameSideBar({ selectedLeague }) {
     const payload = {
       homeScore,
       awayScore,
-      status: gameStatus
+      status: gameStatus,
+      hasEnded: gameStatus === 'Inactive'
     }
 
     db.collection('leagues')
@@ -84,8 +85,37 @@ function LiveGameSideBar({ selectedLeague }) {
         ...payload
       }, { merge: true }).then(() => {
         dispatch({ type: 'TOGGLE_SIDEBAR', toggle: false })
-      });
+      }).catch((e) => {
+        console.log('failed to update the match')
+        console.log(e)
+      })
 
+  }
+
+  const handleEndGame = (e) => {
+    e.preventDefault();
+
+    if (gameSideBar.game.games.status === 'Inactive') {
+      db.collection('leagues')
+        .doc(selectedLeague.id)
+        .collection('matches')
+        .doc(gameSideBar.game.id)
+        .collection('bets').where('matchId', '==', gameSideBar.game.id).get().then((snapshot) => {
+          snapshot.forEach((betDoc) => {
+            betDoc.ref.set({
+              active: false,
+              isCompleted: true
+            }, { merge: true })
+          })
+        }).then(() => {
+          dispatch({ type: 'TOGGLE_SIDEBAR', toggle: false })
+        }).catch((e) => {
+          console.log('shit went down')
+          console.log(e);
+        })
+    } else {
+      alert('Game should be de-Activated first')
+    }
   }
 
   const sidebarInformation = (anchor) => (
@@ -148,6 +178,9 @@ function LiveGameSideBar({ selectedLeague }) {
           <Button variant="outlined" color="secondary" onClick={handleUpdateGame}>
             Update Game
           </Button>
+          <Button variant="outlined" color="secondary" onClick={handleEndGame}>
+            End Game
+        </Button>
         </div>
       </div>
     </div>

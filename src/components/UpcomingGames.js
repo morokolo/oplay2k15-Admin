@@ -26,7 +26,9 @@ function UpcomingGames({ upComingGame, leagueId }) {
       ...upComingGame.dateTime,
       minPrice: minAmount,
       homeScore: 0,
-      awayScore: 0
+      awayScore: 0,
+      hasEnded: false,
+      status: 'Inactive'
     }
 
     const hasEmptyKey = Object.keys(payload).some(x => payload[x] === null || payload[x] === '');
